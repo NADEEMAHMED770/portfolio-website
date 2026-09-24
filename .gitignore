@@ -1,0 +1,74 @@
+# ================================
+# Virtual Environment
+# ================================
+venv/
+env/
+ENV/
+.venv/
+
+# ================================
+# Python
+# ================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+
+# ================================
+# Environment Variables / Secrets
+# ================================
+.env
+.env.*
+!.env.example
+
+# ================================
+# Flask / Database
+# ================================
+instance/
+.webassets-cache
+*.db
+*.sqlite
+*.sqlite3
+
+# ================================
+# Testing & Coverage
+# ================================
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+coverage.xml
+
+# ================================
+# IDE / Editor
+# ================================
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ================================
+# Operating System
+# ================================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ================================
+# Logs
+# ================================
+*.log
+logs/
+
+# ================================
+# Type Checking
+# ================================
+.mypy_cache/
+.dmypy.json
