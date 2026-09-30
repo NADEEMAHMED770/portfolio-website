@@ -125,7 +125,7 @@ A public, self-hosted portfolio website with an authenticated admin panel. Conte
 - **One-liner:** Flask web app predicting used-car prices using a trained ML model
 - **Stack:** Python, Flask, scikit-learn, Pandas, NumPy, Joblib, HTML/CSS/JS
 - **Role:** Solo
-- **Result:** R² ≈ 0.90
+- **Result:** R² ≈ 0.77
 - **Live:** car-price-prediction-webapp-eohl.onrender.com
 - **GitHub:** NADEEMAHMED770/car-price-prediction-webapp + car_price_prediction
 - **Features:** Real-time prediction, input validation, responsive UI, error handling
