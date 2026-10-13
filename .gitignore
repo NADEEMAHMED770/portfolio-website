@@ -30,7 +30,8 @@ pip-wheel-metadata/
 # ================================
 # Flask / Database
 # ================================
-instance/
+instance/*
+!instance/.gitkeep
 .webassets-cache
 *.db
 *.sqlite
