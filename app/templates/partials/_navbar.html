@@ -1,0 +1,21 @@
+<header class="navbar">
+    <div class="container navbar__inner">
+        <a href="{{ url_for('main.home') }}" class="navbar__brand" aria-label="Home">NA</a>
+
+        <input type="checkbox" id="nav-toggle" class="navbar__toggle" aria-hidden="true">
+        <label for="nav-toggle" class="navbar__toggle-label" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </label>
+
+        <nav class="navbar__nav" aria-label="Primary">
+            <ul class="navbar__list">
+                <li><a href="{{ url_for('main.home') }}" class="navbar__link">Home</a></li>
+                <li><a href="{{ url_for('main.about') }}" class="navbar__link">About</a></li>
+                <li><a href="{{ url_for('main.projects') }}" class="navbar__link">Projects</a></li>
+                <li><a href="{{ url_for('main.education') }}" class="navbar__link">Education</a></li>
+                <li><a href="{{ url_for('main.certifications') }}" class="navbar__link">Certifications</a></li>
+                <li><a href="{{ url_for('main.contact') }}" class="navbar__link">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>

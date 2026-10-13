@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Home — Nadeem Ahmed Ghoto{% endblock %}
+{% block meta_description %}AI/ML Student and Aspiring Engineer. Building projects from scratch — portfolio, projects, and certifications.{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero__photo" aria-label="Profile photo placeholder">
+            [ Photo ]
+        </div>
+
+        <div class="hero__text">
+            <h1 class="hero__name">Nadeem Ahmed Ghoto</h1>
+            <p class="hero__title">AI/ML Student &amp; Aspiring Engineer</p>
+            <p class="hero__tagline">
+                Aspiring AI/ML Engineer | Learning Python &amp; Data Analytics |
+                Building projects from scratch.
+            </p>
+            <div class="hero__cta">
+                <a href="{{ url_for('main.projects') }}" class="btn btn--primary">View Projects</a>
+                <a href="#" class="btn btn--secondary">Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED PROJECTS -->
+    <section class="section">
+        <h2 class="section__title">Featured Projects</h2>
+
+        <div class="project-grid">
+            {% for project in [
+                {'title': 'Car Price Prediction', 'desc': 'Flask ML deployment', 'tags': ['Python', 'Flask', 'ML']},
+                {'title': 'Local Skill Marketplace', 'desc': 'Java Swing + MySQL desktop app', 'tags': ['Java', 'MySQL', 'OOP']},
+                {'title': 'Unemployment Analysis', 'desc': 'EDA on Indian unemployment data', 'tags': ['Pandas', 'EDA']},
+                {'title': 'Iris Classification', 'desc': 'Random Forest · 93.33% accuracy', 'tags': ['sklearn', 'ML']}
+            ] %}
+            <article class="card project-card">
+                <div class="project-card__image">[ Project Image ]</div>
+                <h3 class="project-card__title">{{ project.title }}</h3>
+                <p class="project-card__desc">{{ project.desc }}</p>
+                <div class="project-card__tags">
+                    {% for tag in project.tags %}
+                    <span class="chip">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <div class="project-card__links">
+                    <a href="#">Live</a>
+                    <a href="#">Code</a>
+                </div>
+            </article>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- SKILLS PREVIEW -->
+    <section class="section">
+        <h2 class="section__title">Skills</h2>
+        <div class="skills-preview">
+            {% for skill in ['Python', 'SQL', 'Java', 'Pandas', 'NumPy', 'Matplotlib',
+                             'Seaborn', 'scikit-learn', 'Flask', 'Git', 'Jupyter', 'MySQL'] %}
+            <span class="chip">{{ skill }}</span>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- EDUCATION SNAPSHOT -->
+    <section class="section">
+        <h2 class="section__title">Education</h2>
+        <div class="edu-snapshot">
+            <div class="edu-snapshot__info">
+                <h3>Aror University, Sukkur</h3>
+                <p>BS Artificial Intelligence · Department of Emerging Sciences and Technology</p>
+            </div>
+            <div class="edu-snapshot__stat">
+                <div class="edu-snapshot__stat-value">3.58</div>
+                <div class="edu-snapshot__stat-label">CGPA / 4.00</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta">
+        <h2>Ready to work together?</h2>
+        <p>Open to internships and collaboration opportunities.</p>
+        <a href="{{ url_for('main.contact') }}" class="btn btn--primary">Get in Touch</a>
+    </section>
+
+</div>
+{% endblock %}
