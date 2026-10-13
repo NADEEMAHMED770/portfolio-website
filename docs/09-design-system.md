@@ -2,7 +2,7 @@
 
 **Document:** 09-design-system.md
 **Version:** 1.0
-**Status:** Awaiting palette decision — Phase 1, Session 5
+**Status:** Locked — Phase 1, Session 5
 **Last Updated:** 2026-10-13
 
 ---
@@ -475,19 +475,22 @@ Once palette is chosen, these become the source of truth:
 
 ---
 
-## 17. DECISION REQUIRED
+## 17. Final Decisions (Locked)
 
-**Before Session 6, choose the palette:**
+| Decision | Choice | Rationale |
+|---|---|---|
+| **Palette** | **B — Data Emerald** | Matches existing photo, signals data/analytics, distinctive |
+| **Primary color** | `#059669` (Emerald 600) | WCAG AA on white, brand anchor |
+| **Photo treatment** | **Keep green background** | Becomes intentional brand element |
+| **UI font** | **Inter** | Industry standard, excellent readability |
+| **Code font** | **JetBrains Mono** | Purpose-built for code, ligatures |
+| **Icon library** | **Lucide** | Stroke-based, tree-shakeable, MIT license |
+| **Spacing grid** | 8px base | Divides cleanly, matches pixel ratios |
+| **Radius default** | 8px | Consistent across buttons, inputs, cards |
+| **Dark mode** | System + manual toggle | Respects OS preference, override persisted |
+| **Motion** | Subtle, purposeful | 150–300ms, respects `prefers-reduced-motion` |
 
-- [ ] **A. Technical Indigo** — safe, corporate, requires new photo
-- [ ] **B. Data Emerald** ⭐ — distinctive, matches photo, recommended
-- [ ] **C. AI Violet** — bold, requires new photo
-
-**Also decide:**
-
-- [ ] **Photo treatment** — depends on palette (see Section 2)
-- [ ] **Font choices** — accept Inter + JetBrains Mono, or propose alternatives?
-- [ ] **Icon library** — accept Lucide, or propose alternatives?
+**All decisions are final for v1.0.** Changes require a version bump and audit of impacted components.
 
 ---
 
