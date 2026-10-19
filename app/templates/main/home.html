@@ -37,7 +37,7 @@
         <div class="project-grid">
             {% for project in projects %}
             <article class="card project-card">
-                <div class="project-card__image">[ Project Image ]</div>
+                <img src="{{ url_for('static', filename='uploads/projects/' + project.image_file) }}" alt="{{ project.title }}" class="project-card__image" style="object-fit: cover;">
                 <h3 class="project-card__title">{{ project.title }}</h3>
                 <p class="project-card__desc">{{ project.one_liner }}</p>
                 <div class="project-card__tags">

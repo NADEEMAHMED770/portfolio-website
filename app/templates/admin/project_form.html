@@ -1,0 +1,69 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}{{ action }} Project{% endblock %}
+
+{% block admin_content %}
+<header class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>{{ action }} Project</h2>
+    <a href="{{ url_for('admin.projects') }}" class="btn btn--secondary">← Back to List</a>
+</header>
+
+<div class="card" style="max-width: 800px;">
+    <form method="POST" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            {{ form.title.label }}
+            {{ form.title(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.slug.label }}
+            {{ form.slug(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.one_liner.label }}
+            {{ form.one_liner(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.description.label }}
+            {{ form.description(class="form-control", rows="4") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.tech_stack.label }}
+            {{ form.tech_stack(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.role.label }}
+            {{ form.role(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.github_url.label }}
+            {{ form.github_url(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.live_url.label }}
+            {{ form.live_url(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            {{ form.image.label }}
+            {{ form.image(class="form-control") }}
+            <small style="color: var(--text-muted); display: block; margin-top: 0.25rem;">Upload a JPG or PNG
+                thumbnail.</small>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+            {{ form.is_featured() }}
+            {{ form.is_featured.label }}
+        </div>
+
+        <button type="submit" class="btn btn--primary" style="margin-top: 1rem;">{{ form.submit.label.text }}</button>
+    </form>
+</div>
+{% endblock %}

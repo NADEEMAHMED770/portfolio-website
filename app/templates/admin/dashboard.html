@@ -1,15 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'admin/base_admin.html' %}
+
 {% block title %}Admin Dashboard{% endblock %}
 
-{% block content %}
-<div class="container">
-    <header class="page-header">
-        <h1>Admin Dashboard</h1>
-        <p>Welcome back, Nadeem.</p>
-    </header>
-    <div class="card">
-        <h3>Database is active.</h3>
-        <p style="color: var(--text-muted); margin-top: 0.5rem;">You are securely logged in.</p>
-    </div>
+{% block admin_content %}
+<header class="page-header">
+    <h1>Dashboard</h1>
+    <p>Welcome back, Nadeem.</p>
+</header>
+<div class="card">
+    <h3>Site Overview</h3>
+    <p style="color: var(--text-muted); margin-top: 0.5rem;">Select an option from the sidebar to manage your content.</p>
 </div>
 {% endblock %}

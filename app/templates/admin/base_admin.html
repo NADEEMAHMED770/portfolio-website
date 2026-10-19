@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="display: grid; grid-template-columns: 200px 1fr; gap: 2rem; margin-top: 2rem;">
+    
+    <!-- Sidebar -->
+    <aside class="card" style="height: fit-content; padding: 1rem;">
+        <h3 style="margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;">Admin Menu</h3>
+        <ul class="list-styled" style="gap: 0.5rem;">
+            <li><a href="{{ url_for('admin.dashboard') }}" style="color: var(--text-main);">Dashboard</a></li>
+            <li><a href="{{ url_for('admin.projects') }}" style="color: var(--text-main);">Projects</a></li>
+            <li><a href="#" style="color: var(--text-muted);">Skills (Soon)</a></li>
+            <li><a href="#" style="color: var(--text-muted);">Education (Soon)</a></li>
+            <li style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border-color);">
+                <a href="{{ url_for('admin.logout') }}" style="color: red;">Logout</a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main>
+        {% block admin_content %}{% endblock %}
+    </main>
+</div>
+{% endblock %}

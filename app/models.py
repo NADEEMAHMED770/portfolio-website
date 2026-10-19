@@ -90,6 +90,7 @@ class Project(db.Model):
     one_liner = db.Column(db.String(200), nullable=False)
     description = db.Column(db.Text, nullable=True)
     tech_stack = db.Column(db.String(300), nullable=True)
+    image_file = db.Column(db.String(120), nullable=False, server_default='default.jpg')
     role = db.Column(db.String(100), nullable=True)
     github_url = db.Column(db.String(300), nullable=True)
     live_url = db.Column(db.String(300), nullable=True)

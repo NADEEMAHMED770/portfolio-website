@@ -6,7 +6,7 @@ from flask import Flask, render_template
 from config import config
 
 # Import all extensions
-from app.extensions import db, migrate, login_manager
+from app.extensions import db, migrate, login_manager, csrf
 
 
 def create_app(config_name='development'):
@@ -17,6 +17,7 @@ def create_app(config_name='development'):
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
+    csrf.init_app(app)
 
     # Register blueprints
     from app.blueprints.main import main_bp

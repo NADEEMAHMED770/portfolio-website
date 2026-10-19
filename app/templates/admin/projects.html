@@ -1,0 +1,53 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Manage Projects{% endblock %}
+
+{% block admin_content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>Manage Projects</h2>
+    <a href="{{ url_for('admin.project_create') }}" class="btn btn--primary">+ Add Project</a>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="card" style="margin-bottom: 1rem; border-color: var(--brand-color); color: var(--brand-color);">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="card" style="padding: 0; overflow: hidden;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead style="background: var(--bg-surface); border-bottom: 1px solid var(--border-color);">
+            <tr>
+                <th style="padding: 1rem;">Title</th>
+                <th style="padding: 1rem;">Featured</th>
+                <th style="padding: 1rem; text-align: right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem;">{{ project.title }}</td>
+                <td style="padding: 1rem;">{{ 'Yes' if project.is_featured else 'No' }}</td>
+                <td style="padding: 1rem; text-align: right;">
+                    <a href="{{ url_for('admin.project_edit', id=project.id) }}" style="margin-right: 1rem; color: var(--brand-color);">Edit</a>
+                    
+                    <form action="{{ url_for('admin.project_delete', id=project.id) }}" method="POST" style="display: inline;">
+                        <!-- THIS IS THE MISSING PIECE: CSRF Token for the Delete Form -->
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        
+                        <button type="submit" style="background: none; border: none; color: red; cursor: pointer;" onclick="return confirm('Are you sure you want to delete this project?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="3" style="padding: 2rem; text-align: center; color: var(--text-muted);">No projects found. Click "Add Project" to create one.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

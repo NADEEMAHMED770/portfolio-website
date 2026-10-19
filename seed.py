@@ -5,7 +5,7 @@ Run this via: python seed.py
 from datetime import date
 from app import create_app
 from app.extensions import db
-from app.models import Profile, Education, Skill, Project, Certification
+from app.models import Profile, Education, Skill, Project, Certification, User
 
 app = create_app('development')
 
@@ -17,6 +17,13 @@ def seed_database():
         db.session.query(Skill).delete()
         db.session.query(Education).delete()
         db.session.query(Profile).delete()
+        print("Adding Admin User...")
+        # Only create if it doesn't exist
+        admin = User.query.filter_by(email='nadeemahmedghoto06@gmail.com').first()
+        if not admin:
+            admin = User(email='nadeemahmedghoto06@gmail.com')
+            admin.set_password('MySuperSecretPassword123!') # Change this to your real password
+            db.session.add(admin)
         db.session.commit()
 
         print("Adding Profile...")

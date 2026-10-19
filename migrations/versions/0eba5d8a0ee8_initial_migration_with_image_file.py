@@ -1,8 +1,8 @@
-"""Initial migration: User, Profile, Education, Skill, Project, Certification
+"""Initial migration with image_file
 
-Revision ID: e8ce16107431
+Revision ID: 0eba5d8a0ee8
 Revises: 
-Create Date: 2026-10-19 17:30:18.180130
+Create Date: 2026-10-19 18:49:30.889908
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'e8ce16107431'
+revision = '0eba5d8a0ee8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -63,6 +63,7 @@ def upgrade():
     sa.Column('one_liner', sa.String(length=200), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('tech_stack', sa.String(length=300), nullable=True),
+    sa.Column('image_file', sa.String(length=120), server_default='default.jpg', nullable=False),
     sa.Column('role', sa.String(length=100), nullable=True),
     sa.Column('github_url', sa.String(length=300), nullable=True),
     sa.Column('live_url', sa.String(length=300), nullable=True),
