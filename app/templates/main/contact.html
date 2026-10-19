@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact — Nadeem Ahmed Ghoto{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h1>Get in Touch</h1>
+        <p>Have a question or want to work together? Drop a message.</p>
+    </header>
+
+    <div class="split-layout">
+        <div>
+            <form action="#" method="POST" class="card">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Your name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="you@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" class="form-control" placeholder="How can I help?"></textarea>
+                </div>
+                <button type="submit" class="btn btn--primary" style="width: 100%;">Send Message</button>
+            </form>
+        </div>
+        
+        <div>
+            <div class="card">
+                <h3>Connect with me</h3>
+                <ul class="list-styled" style="margin-top: 1rem;">
+                    <li><a href="https://www.linkedin.com/in/nadeem-ahmed-15033a328/" target="_blank"><strong>LinkedIn</strong></a></li>
+                    <li><a href="https://github.com/NADEEMAHMED770" target="_blank"><strong>GitHub</strong></a></li>
+                    <li><a href="https://www.kaggle.com/nadeemahmedghoto" target="_blank"><strong>Kaggle</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

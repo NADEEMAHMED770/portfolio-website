@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Education — Nadeem Ahmed Ghoto{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h1>Education</h1>
+        <p>Academic background and current studies.</p>
+    </header>
+
+    <div class="edu-snapshot" style="margin-bottom: 3rem; align-items: flex-start; flex-direction: column;">
+        <div class="edu-snapshot__info">
+            <h2>Aror University of Art, Architecture, Design & Heritage</h2>
+            <h3 style="color: #64748B; margin-bottom: 0.5rem;">BS Artificial Intelligence</h3>
+            <p>Department of Emerging Sciences and Technology</p>
+            <p style="margin-top: 1rem;"><strong>July 2025 – May 2029</strong> · Currently in 3rd semester</p>
+        </div>
+        <div class="edu-snapshot__stat" style="margin-top: 1rem;">
+            <div class="edu-snapshot__stat-value">3.58</div>
+            <div class="edu-snapshot__stat-label">Overall CGPA / 4.00</div>
+        </div>
+    </div>
+
+    <h2>Relevant Coursework</h2>
+    <div class="skills-preview" style="margin-top: 1rem;">
+        <span class="chip">Data Structures & Algorithms</span>
+        <span class="chip">Machine Learning</span>
+        <span class="chip">Multivariable Calculus</span>
+        <span class="chip">Linear Algebra</span>
+        <span class="chip">Database Systems</span>
+    </div>
+</div>
+{% endblock %}

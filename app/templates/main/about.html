@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}About — Nadeem Ahmed Ghoto{% endblock %}
+
+{% block content %}
+<div class="container">
+    <header class="page-header">
+        <h1>About Me</h1>
+        <p>Learn more about my background, focus, and what I'm doing.</p>
+    </header>
+
+    <div class="split-layout">
+        <div>
+            <h2>My Story</h2>
+            <p class="hero__tagline" style="color: var(--text-primary);">I am an AI/ML student at Aror University, focused on building end-to-end data science and machine learning projects from scratch.</p>
+            <p style="margin-bottom: 1rem;">My journey started with learning Python, which quickly led me into the world of data analytics. I believe the best way to learn is by doing, which is why every project on this site is something I've built, broken, and fixed myself.</p>
+            <p>I don't just stop at Jupyter Notebooks. I focus on deploying models—taking them from raw data to live web applications that people can actually use.</p>
+            
+            <h2 style="margin-top: 2rem;">Languages</h2>
+            <ul class="list-styled">
+                <li><strong>English</strong> — Fluent</li>
+                <li><strong>Urdu</strong> — Fluent</li>
+                <li><strong>Sindhi</strong> — Native</li>
+            </ul>
+        </div>
+
+        <div>
+            <div class="card" style="margin-bottom: 1.5rem;">
+                <h3>Currently Learning</h3>
+                <div class="skills-preview" style="margin-top: 1rem;">
+                    <span class="chip">Power BI</span>
+                    <span class="chip">Tableau</span>
+                    <span class="chip">Data Analytics</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>What I'm Working On</h3>
+                <ul class="list-styled" style="margin-top: 1rem;">
+                    <li>Building this Flask portfolio</li>
+                    <li>Practicing EDA on Kaggle</li>
+                    <li>Preparing for internships</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
