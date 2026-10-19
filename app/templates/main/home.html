@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Home — Nadeem Ahmed Ghoto{% endblock %}
-{% block meta_description %}AI/ML Student and Aspiring Engineer. Building projects from scratch — portfolio, projects,
-and certifications.{% endblock %}
+{% block title %}Home — {{ profile.full_name }}{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -14,19 +12,17 @@ and certifications.{% endblock %}
         </div>
 
         <div class="hero__text">
-            <!-- New Hire Badge -->
+            {% if profile.available_for_hire %}
             <div class="badge-hire">
                 <span class="badge-hire__dot"></span>
                 Available for Summer Internships
             </div>
+            {% endif %}
 
-            <h1 class="hero__name">Nadeem Ahmed Ghoto</h1>
-            <p class="hero__title">AI/ML Student &amp; Aspiring Engineer</p>
-            <!-- ... rest of the hero text ... -->
-            <p class="hero__tagline">
-                Aspiring AI/ML Engineer | Learning Python &amp; Data Analytics |
-                Building projects from scratch.
-            </p>
+            <h1 class="hero__name">{{ profile.full_name }}</h1>
+            <p class="hero__title">{{ profile.title }}</p>
+            <p class="hero__tagline">{{ profile.tagline }}</p>
+            
             <div class="hero__cta">
                 <a href="{{ url_for('main.projects') }}" class="btn btn--primary">View Projects</a>
                 <a href="#" class="btn btn--secondary">Resume</a>
@@ -39,19 +35,13 @@ and certifications.{% endblock %}
         <h2 class="section__title">Featured Projects</h2>
 
         <div class="project-grid">
-            {% for project in [
-            {'title': 'Car Price Prediction', 'desc': 'Flask ML deployment', 'tags': ['Python', 'Flask', 'ML']},
-            {'title': 'Local Skill Marketplace', 'desc': 'Java Swing + MySQL desktop app', 'tags': ['Java', 'MySQL',
-            'OOP']},
-            {'title': 'Unemployment Analysis', 'desc': 'EDA on Indian unemployment data', 'tags': ['Pandas', 'EDA']},
-            {'title': 'Iris Classification', 'desc': 'Random Forest · 93.33% accuracy', 'tags': ['sklearn', 'ML']}
-            ] %}
+            {% for project in projects %}
             <article class="card project-card">
                 <div class="project-card__image">[ Project Image ]</div>
                 <h3 class="project-card__title">{{ project.title }}</h3>
-                <p class="project-card__desc">{{ project.desc }}</p>
+                <p class="project-card__desc">{{ project.one_liner }}</p>
                 <div class="project-card__tags">
-                    {% for tag in project.tags %}
+                    {% for tag in project.tech_stack.split(', ') %}
                     <span class="chip">{{ tag }}</span>
                     {% endfor %}
                 </div>
@@ -68,9 +58,8 @@ and certifications.{% endblock %}
     <section class="section">
         <h2 class="section__title">Skills</h2>
         <div class="skills-preview">
-            {% for skill in ['Python', 'SQL', 'Java', 'Pandas', 'NumPy', 'Matplotlib',
-            'Seaborn', 'scikit-learn', 'Flask', 'Git', 'Jupyter', 'MySQL'] %}
-            <span class="chip">{{ skill }}</span>
+            {% for skill in skills %}
+            <span class="chip">{{ skill.name }}</span>
             {% endfor %}
         </div>
     </section>
@@ -80,12 +69,12 @@ and certifications.{% endblock %}
         <h2 class="section__title">Education</h2>
         <div class="edu-snapshot">
             <div class="edu-snapshot__info">
-                <h3>Aror University, Sukkur</h3>
-                <p>BS Artificial Intelligence · Department of Emerging Sciences and Technology</p>
+                <h3>{{ education.short_name }}</h3>
+                <p>{{ education.degree }} · {{ education.department }}</p>
             </div>
             <div class="edu-snapshot__stat">
-                <div class="edu-snapshot__stat-value">3.58</div>
-                <div class="edu-snapshot__stat-label">CGPA / 4.00</div>
+                <div class="edu-snapshot__stat-value">{{ education.cgpa }}</div>
+                <div class="edu-snapshot__stat-label">CGPA / {{ education.cgpa_scale }}</div>
             </div>
         </div>
     </section>

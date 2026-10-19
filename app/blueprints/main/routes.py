@@ -4,31 +4,49 @@ Routes for the main blueprint.
 
 from flask import render_template
 from app.blueprints.main import main_bp
+from app.models import Profile, Project, Skill, Education, Certification
 
 
 @main_bp.route('/')
 def home():
-    return render_template('main/home.html', page_title='Home')
+    # Fetch data from DB
+    profile = Profile.query.first()
+    projects = Project.query.filter_by(is_featured=True).order_by(Project.display_order).limit(4).all()
+    skills = Skill.query.filter_by(is_learning=False).limit(12).all()
+    education = Education.query.filter_by(is_current=True).first()
+
+    return render_template(
+        'main/home.html', 
+        page_title='Home',
+        profile=profile,
+        projects=projects,
+        skills=skills,
+        education=education
+    )
 
 
 @main_bp.route('/about')
 def about():
-    return render_template('main/about.html', page_title='About')
+    profile = Profile.query.first()
+    return render_template('main/about.html', page_title='About', profile=profile)
 
 
 @main_bp.route('/projects')
 def projects():
-    return render_template('main/projects.html', page_title='Projects')
+    all_projects = Project.query.order_by(Project.display_order).all()
+    return render_template('main/projects.html', page_title='Projects', projects=all_projects)
 
 
 @main_bp.route('/education')
 def education():
-    return render_template('main/education.html', page_title='Education')
+    edu = Education.query.filter_by(is_current=True).first()
+    return render_template('main/education.html', page_title='Education', education=edu)
 
 
 @main_bp.route('/certifications')
 def certifications():
-    return render_template('main/certifications.html', page_title='Certifications')
+    certs = Certification.query.all()
+    return render_template('main/certifications.html', page_title='Certifications', certifications=certs)
 
 
 @main_bp.route('/contact')

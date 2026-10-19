@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-
 {% block title %}Projects — Nadeem Ahmed Ghoto{% endblock %}
-
 {% block content %}
 <div class="container">
     <header class="page-header">
@@ -10,57 +8,22 @@
     </header>
 
     <div class="project-grid">
-        <!-- Project 1 -->
+        {% for project in projects %}
         <article class="card project-card">
             <div class="project-card__image">[ Project Image ]</div>
-            <h3 class="project-card__title">Car Price Prediction</h3>
-            <p class="project-card__desc">Flask ML deployment predicting used car prices.</p>
+            <h3 class="project-card__title">{{ project.title }}</h3>
+            <p class="project-card__desc">{{ project.one_liner }}</p>
             <div class="project-card__tags">
-                <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">ML</span>
+                {% for tag in project.tech_stack.split(', ') %}
+                <span class="chip">{{ tag }}</span>
+                {% endfor %}
             </div>
             <div class="project-card__links">
-                <a href="#">Live Demo</a><a href="#">GitHub</a>
+                {% if project.live_url %}<a href="{{ project.live_url }}" target="_blank">Live</a>{% endif %}
+                {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank">Code</a>{% endif %}
             </div>
         </article>
-        
-        <!-- Project 2 -->
-        <article class="card project-card">
-            <div class="project-card__image">[ Project Image ]</div>
-            <h3 class="project-card__title">Local Skill Marketplace</h3>
-            <p class="project-card__desc">Java Swing + MySQL desktop application.</p>
-            <div class="project-card__tags">
-                <span class="chip">Java</span><span class="chip">MySQL</span>
-            </div>
-            <div class="project-card__links">
-                <a href="#">GitHub</a>
-            </div>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="card project-card">
-            <div class="project-card__image">[ Project Image ]</div>
-            <h3 class="project-card__title">Unemployment Analysis</h3>
-            <p class="project-card__desc">EDA on Indian unemployment data using Pandas.</p>
-            <div class="project-card__tags">
-                <span class="chip">Pandas</span><span class="chip">EDA</span>
-            </div>
-            <div class="project-card__links">
-                <a href="#">GitHub</a>
-            </div>
-        </article>
-
-        <!-- Project 4 -->
-        <article class="card project-card">
-            <div class="project-card__image">[ Project Image ]</div>
-            <h3 class="project-card__title">Iris Flower Classification</h3>
-            <p class="project-card__desc">Random Forest classifier with 93.33% accuracy.</p>
-            <div class="project-card__tags">
-                <span class="chip">scikit-learn</span><span class="chip">ML</span>
-            </div>
-            <div class="project-card__links">
-                <a href="#">GitHub</a>
-            </div>
-        </article>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
