@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 
 {% block title %}Home — Nadeem Ahmed Ghoto{% endblock %}
-{% block meta_description %}AI/ML Student and Aspiring Engineer. Building projects from scratch — portfolio, projects, and certifications.{% endblock %}
+{% block meta_description %}AI/ML Student and Aspiring Engineer. Building projects from scratch — portfolio, projects,
+and certifications.{% endblock %}
 
 {% block content %}
 <div class="container">
@@ -13,8 +14,15 @@
         </div>
 
         <div class="hero__text">
+            <!-- New Hire Badge -->
+            <div class="badge-hire">
+                <span class="badge-hire__dot"></span>
+                Available for Summer Internships
+            </div>
+
             <h1 class="hero__name">Nadeem Ahmed Ghoto</h1>
             <p class="hero__title">AI/ML Student &amp; Aspiring Engineer</p>
+            <!-- ... rest of the hero text ... -->
             <p class="hero__tagline">
                 Aspiring AI/ML Engineer | Learning Python &amp; Data Analytics |
                 Building projects from scratch.
@@ -32,10 +40,11 @@
 
         <div class="project-grid">
             {% for project in [
-                {'title': 'Car Price Prediction', 'desc': 'Flask ML deployment', 'tags': ['Python', 'Flask', 'ML']},
-                {'title': 'Local Skill Marketplace', 'desc': 'Java Swing + MySQL desktop app', 'tags': ['Java', 'MySQL', 'OOP']},
-                {'title': 'Unemployment Analysis', 'desc': 'EDA on Indian unemployment data', 'tags': ['Pandas', 'EDA']},
-                {'title': 'Iris Classification', 'desc': 'Random Forest · 93.33% accuracy', 'tags': ['sklearn', 'ML']}
+            {'title': 'Car Price Prediction', 'desc': 'Flask ML deployment', 'tags': ['Python', 'Flask', 'ML']},
+            {'title': 'Local Skill Marketplace', 'desc': 'Java Swing + MySQL desktop app', 'tags': ['Java', 'MySQL',
+            'OOP']},
+            {'title': 'Unemployment Analysis', 'desc': 'EDA on Indian unemployment data', 'tags': ['Pandas', 'EDA']},
+            {'title': 'Iris Classification', 'desc': 'Random Forest · 93.33% accuracy', 'tags': ['sklearn', 'ML']}
             ] %}
             <article class="card project-card">
                 <div class="project-card__image">[ Project Image ]</div>
@@ -60,7 +69,7 @@
         <h2 class="section__title">Skills</h2>
         <div class="skills-preview">
             {% for skill in ['Python', 'SQL', 'Java', 'Pandas', 'NumPy', 'Matplotlib',
-                             'Seaborn', 'scikit-learn', 'Flask', 'Git', 'Jupyter', 'MySQL'] %}
+            'Seaborn', 'scikit-learn', 'Flask', 'Git', 'Jupyter', 'MySQL'] %}
             <span class="chip">{{ skill }}</span>
             {% endfor %}
         </div>
