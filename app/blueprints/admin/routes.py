@@ -8,6 +8,9 @@ import os
 from werkzeug.utils import secure_filename
 from flask import current_app
 
+from app.models import User, Project, Skill, Education
+from app.forms import LoginForm, ProjectForm, SkillForm, EducationForm
+
 @admin_bp.route('/')
 @login_required
 def dashboard():
@@ -127,3 +130,87 @@ def project_delete(id):
     db.session.commit()
     flash('Project deleted.', 'success')
     return redirect(url_for('admin.projects'))
+
+# ==========================================
+# SKILL CRUD
+# ==========================================
+
+@admin_bp.route('/skills')
+@login_required
+def skills():
+    all_skills = Skill.query.order_by(Skill.category, Skill.display_order).all()
+    return render_template('admin/skills.html', skills=all_skills)
+
+@admin_bp.route('/skills/create', methods=['GET', 'POST'])
+@login_required
+def skill_create():
+    form = SkillForm()
+    if form.validate_on_submit():
+        skill = Skill(
+            name=form.name.data,
+            category=form.category.data,
+            level=form.level.data,
+            is_learning=form.is_learning.data
+        )
+        db.session.add(skill)
+        db.session.commit()
+        flash('Skill created successfully.', 'success')
+        return redirect(url_for('admin.skills'))
+    return render_template('admin/skill_form.html', form=form, action="Create")
+
+@admin_bp.route('/skills/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def skill_edit(id):
+    skill = Skill.query.get_or_404(id)
+    form = SkillForm(obj=skill)
+    if form.validate_on_submit():
+        form.populate_obj(skill)
+        db.session.commit()
+        flash('Skill updated successfully.', 'success')
+        return redirect(url_for('admin.skills'))
+    return render_template('admin/skill_form.html', form=form, action="Edit")
+
+@admin_bp.route('/skills/delete/<int:id>', methods=['POST'])
+@login_required
+def skill_delete(id):
+    skill = Skill.query.get_or_404(id)
+    db.session.delete(skill)
+    db.session.commit()
+    flash('Skill deleted.', 'success')
+    return redirect(url_for('admin.skills'))
+
+# ==========================================
+# EDUCATION CRUD
+# ==========================================
+
+@admin_bp.route('/education')
+@login_required
+def education():
+    # Since there's usually only one, we just list them all
+    all_education = Education.query.all()
+    return render_template('admin/education.html', education=all_education)
+
+@admin_bp.route('/education/edit/<int:id>', methods=['GET', 'POST'])
+@login_required
+def education_edit(id):
+    edu = Education.query.get_or_404(id)
+    form = EducationForm(obj=edu)
+    
+    if form.validate_on_submit():
+        # We manually assign fields to handle type casting (String to Float/Int)
+        edu.institution = form.institution.data
+        edu.short_name = form.short_name.data
+        edu.degree = form.degree.data
+        edu.department = form.department.data
+        edu.start_year = int(form.start_year.data) if form.start_year.data else None
+        edu.end_year = int(form.end_year.data) if form.end_year.data else None
+        edu.current_semester = int(form.current_semester.data) if form.current_semester.data else None
+        edu.cgpa = float(form.cgpa.data) if form.cgpa.data else None
+        edu.cgpa_scale = float(form.cgpa_scale.data) if form.cgpa_scale.data else 4.0
+        edu.is_current = form.is_current.data
+        
+        db.session.commit()
+        flash('Education updated successfully.', 'success')
+        return redirect(url_for('admin.education'))
+        
+    return render_template('admin/education_form.html', form=form)

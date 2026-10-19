@@ -1,0 +1,46 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Manage Skills{% endblock %}
+
+{% block admin_content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>Manage Skills</h2>
+    <a href="{{ url_for('admin.skill_create') }}" class="btn btn--primary">+ Add Skill</a>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="card" style="margin-bottom: 1rem; border-color: var(--brand-color); color: var(--brand-color);">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="card" style="padding: 0; overflow: hidden;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead style="background: var(--bg-surface); border-bottom: 1px solid var(--border-color);">
+            <tr>
+                <th style="padding: 1rem;">Name</th>
+                <th style="padding: 1rem;">Category</th>
+                <th style="padding: 1rem;">Level</th>
+                <th style="padding: 1rem; text-align: right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for skill in skills %}
+            <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem;">{{ skill.name }}</td>
+                <td style="padding: 1rem;">{{ skill.category }}</td>
+                <td style="padding: 1rem;">{{ skill.level }}</td>
+                <td style="padding: 1rem; text-align: right;">
+                    <a href="{{ url_for('admin.skill_edit', id=skill.id) }}" style="margin-right: 1rem; color: var(--brand-color);">Edit</a>
+                    <form action="{{ url_for('admin.skill_delete', id=skill.id) }}" method="POST" style="display: inline;">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+                        <button type="submit" style="background: none; border: none; color: red; cursor: pointer;" onclick="return confirm('Are you sure?');">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

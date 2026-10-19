@@ -1,0 +1,33 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}{{ action }} Skill{% endblock %}
+
+{% block admin_content %}
+<header class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>{{ action }} Skill</h2>
+    <a href="{{ url_for('admin.skills') }}" class="btn btn--secondary">← Back to List</a>
+</header>
+
+<div class="card" style="max-width: 600px;">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.name.label }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.category.label }}
+            {{ form.category(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.level.label }}
+            {{ form.level(class="form-control") }}
+        </div>
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem;">
+            {{ form.is_learning() }}
+            {{ form.is_learning.label }}
+        </div>
+        <button type="submit" class="btn btn--primary" style="margin-top: 1rem;">{{ form.submit.label.text }}</button>
+    </form>
+</div>
+{% endblock %}

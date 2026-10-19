@@ -1,0 +1,41 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Manage Education{% endblock %}
+
+{% block admin_content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>Manage Education</h2>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="card" style="margin-bottom: 1rem; border-color: var(--brand-color); color: var(--brand-color);">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<div class="card" style="padding: 0; overflow: hidden;">
+    <table style="width: 100%; border-collapse: collapse; text-align: left;">
+        <thead style="background: var(--bg-surface); border-bottom: 1px solid var(--border-color);">
+            <tr>
+                <th style="padding: 1rem;">Degree</th>
+                <th style="padding: 1rem;">Institution</th>
+                <th style="padding: 1rem;">CGPA</th>
+                <th style="padding: 1rem; text-align: right;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for edu in education %}
+            <tr style="border-bottom: 1px solid var(--border-color);">
+                <td style="padding: 1rem;">{{ edu.degree }}</td>
+                <td style="padding: 1rem;">{{ edu.institution }}</td>
+                <td style="padding: 1rem;">{{ edu.cgpa }} / {{ edu.cgpa_scale }}</td>
+                <td style="padding: 1rem; text-align: right;">
+                    <a href="{{ url_for('admin.education_edit', id=edu.id) }}" style="color: var(--brand-color);">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

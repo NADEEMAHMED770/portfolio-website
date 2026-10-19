@@ -1,0 +1,65 @@
+{% extends 'admin/base_admin.html' %}
+{% block title %}Edit Education{% endblock %}
+
+{% block admin_content %}
+<header class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>Edit Education</h2>
+    <a href="{{ url_for('admin.education') }}" class="btn btn--secondary">← Back to List</a>
+</header>
+
+<div class="card" style="max-width: 800px;">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        
+        <div class="form-group">
+            {{ form.institution.label }}
+            {{ form.institution(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.short_name.label }}
+            {{ form.short_name(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.degree.label }}
+            {{ form.degree(class="form-control") }}
+        </div>
+        <div class="form-group">
+            {{ form.department.label }}
+            {{ form.department(class="form-control") }}
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+                {{ form.start_year.label }}
+                {{ form.start_year(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.end_year.label }}
+                {{ form.end_year(class="form-control") }}
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+                {{ form.current_semester.label }}
+                {{ form.current_semester(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.cgpa.label }}
+                {{ form.cgpa(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.cgpa_scale.label }}
+                {{ form.cgpa_scale(class="form-control") }}
+            </div>
+        </div>
+
+        <div class="form-group" style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
+            {{ form.is_current() }}
+            {{ form.is_current.label }}
+        </div>
+        
+        <button type="submit" class="btn btn--primary" style="margin-top: 1rem;">{{ form.submit.label.text }}</button>
+    </form>
+</div>
+{% endblock %}

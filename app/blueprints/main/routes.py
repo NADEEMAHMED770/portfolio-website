@@ -9,10 +9,12 @@ from app.models import Profile, Project, Skill, Education, Certification
 
 @main_bp.route('/')
 def home():
-    # Fetch data from DB
     profile = Profile.query.first()
     projects = Project.query.filter_by(is_featured=True).order_by(Project.display_order).limit(4).all()
-    skills = Skill.query.filter_by(is_learning=False).limit(12).all()
+    
+    # FIX: Order by category, then display order, and remove the limit
+    skills = Skill.query.filter_by(is_learning=False).order_by(Skill.category, Skill.display_order).all()
+    
     education = Education.query.filter_by(is_current=True).first()
 
     return render_template(
